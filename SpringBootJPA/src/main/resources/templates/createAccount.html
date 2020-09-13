@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Create Account</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body class="row m-0 justify-content-center align-items-center">
+	<div class="col-sm-4 bg-white">
+	
+		<th:block th:include="/_menu"></th:block>
+		
+		<h2>Create Account</h2>
+			
+		<form th:action="@{/createAccount}" th:object="${createAccountForm}" method="POST">
+			<table>
+				<tr>
+					<td>Full Name</td>
+					<td><input type="text" name="fullName" id="fullName"/></td>
+				</tr>
+				<tr>
+					<td>Currency</td>
+					<td>
+						<select name="currency" id="currency">
+							<option value="E">&euro;</option>
+							<option value="D">&dollar;</option>
+							<option value="P">&pound;</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Balance</td>
+					<td><input type="number" name="amount" id="amount"/></td>
+				</tr>
+				<tr>
+					<td>Treasury</td>
+					<td>
+						<select name="treasury" id="currency">
+							<option value="1">Yes</option>
+							<option value="0">No</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><input type="submit" value="Send"/></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+</body>
+</html>

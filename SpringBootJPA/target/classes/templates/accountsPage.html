@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Accounts</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body class="row m-0 justify-content-center align-items-center">
+	<div class="col-sm-4 bg-white">
+		<th:block th:include="/_menu"></th:block>
+		
+		<h2>Accounts</h2>
+		
+		<table border="1">
+			<tr>
+				<th>ID</th>
+				<th>FULL NAME</th>
+				<th>CURRENCY</th>
+				<th>BALANCE</th>
+				<th>TREASURY</th>
+			</tr>
+			<tr th:each="accountInfo : ${accountInfos}">
+				<td th:utext="${accountInfo.id}">..</td>
+				<td th:utext="${accountInfo.fullName}">..</td>
+				<td th:switch="${accountInfo.currency}">
+					<span th:case="E" th:text="'&euro;'"></span>
+					<span th:case="D" th:text="'&dollar;'"></span>
+					<span th:case="P" th:text="'&pound;'"></span>
+				</td>
+				<td th:utext="${accountInfo.balance}">..</td>
+				<td th:switch="${accountInfo.treasury}">
+					<span th:case="1" th:text="YES"></span>
+					<span th:case="0" th:text="NO"></span>
+				</td>
+				<td>
+					<form action="#" th:action="@{/deleteAccount}" id="deleteForm" method="POST" name="deleteForm">
+						
+						<input type="hidden" name="id" th:value="${accountInfo.id}"/>
+						<input type="submit" value="Delete"/>
+					</form>
+				</td>
+			</tr>
+				
+		</table>
+	</div>
+</body>
+</html>
